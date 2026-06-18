@@ -19,25 +19,18 @@ export function useReveal(staggerMs = 50) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Find all .reveal inside this observed root
-            const reveals = el.querySelectorAll(".reveal:not(.visible)");
-            reveals.forEach((child, i) => {
-              // Only animate children that are in the viewport area
-              const rect = child.getBoundingClientRect();
-              if (rect.top < window.innerHeight + 100) {
-                setTimeout(() => child.classList.add("visible"), i * staggerMs);
-              }
-            });
-            observer.unobserve(entry.target);
-          }
+        const intersecting = entries.filter((e) => e.isIntersecting);
+        intersecting.forEach((entry, i) => {
+          setTimeout(() => {
+            entry.target.classList.add("visible");
+          }, i * staggerMs);
+          observer.unobserve(entry.target);
         });
       },
       { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
     );
 
-    observer.observe(el);
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, [staggerMs]);
 
