@@ -68,7 +68,7 @@ ${cta}`;
   /* ── Call Gemini ──────────────────────────────────── */
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const result = await model.generateContent({
       contents: [
@@ -76,7 +76,7 @@ ${cta}`;
       ],
       generationConfig: {
         temperature: 0.85,
-        maxOutputTokens: 500,
+        maxOutputTokens: 2000,
       },
     });
 

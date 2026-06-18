@@ -8,7 +8,6 @@ const footerCols = [
     links: [
       { label: "Generator", href: "/#tool" },
       { label: "Features", href: "/#features" },
-      { label: "Pricing", href: "/#pricing" },
       { label: "Roadmap", href: "/#roadmap" },
     ],
   },

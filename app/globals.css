@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ═══════════════════════════════════════════════════════
    DESIGN TOKENS — Tailwind CSS v4 @theme
    ═══════════════════════════════════════════════════════ */
 @theme inline {
   --color-brand: #2563EB;
   --color-brand-dark: #1D4ED8;
-  --color-brand-light: #EFF6FF;
+  --color-brand-light: #DBEAFE;
   --color-accent: #3B82F6;
   --color-dark: #0F172A;
   --color-muted: #64748B;
@@ -24,19 +26,55 @@
 /* ═══════════════════════════════════════════════════════
    BASE
    ═══════════════════════════════════════════════════════ */
+
+/* ── Smooth theme transition for ALL elements ──── */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease,
+    fill 0.4s ease,
+    stroke 0.4s ease;
+}
+
+/* Disable theme transition on elements that have their own
+   timing-critical animations (prevents jank) */
+.animate-spin-slow,
+.animate-spin-slow *,
+.shimmer,
+[class*="animate-blob"],
+[class*="animate-pulse"] {
+  transition: none !important;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--color-bg);
   color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body,
 :root.dark body {
   background: var(--color-dark-bg);
   color: var(--color-dark-text);
+}
+
+/* ── Dark-mode text color overrides ──────────────
+   Tailwind maps text-dark → --color-dark (#0F172A).
+   In dark mode that's invisible on dark cards,
+   so we swap it to the light palette.             */
+:root.dark .text-dark,
+.dark .text-dark {
+  color: var(--color-dark-text) !important;   /* #F1F5F9 */
+}
+:root.dark .text-muted,
+.dark .text-muted {
+  color: var(--color-dark-muted) !important;  /* #94A3B8 */
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -120,6 +158,10 @@ body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+@keyframes themeIconRotate {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
 
 /* ═══════════════════════════════════════════════════════
    ANIMATION UTILITIES
@@ -138,6 +180,7 @@ body {
 .animate-blob3         { animation: blob3 16s ease-in-out infinite; }
 .animate-pulse-dot     { animation: pulseDot 2s ease-in-out infinite; }
 .animate-underline     { animation: underlineGrow 0.8s ease-out 0.5s both; }
+.animate-theme-icon    { animation: themeIconRotate 0.4s ease-out both; }
 
 .delay-75  { animation-delay: 75ms; }
 .delay-100 { animation-delay: 100ms; }

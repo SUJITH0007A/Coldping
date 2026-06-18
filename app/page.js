@@ -140,7 +140,7 @@ function CounterCard({ target, label, suffix = "", prefix = "", displayValue }) 
   }, [target, suffix, prefix, displayValue]);
 
   return (
-    <div className="text-center p-3 rounded-xl bg-white/60 dark:bg-white/5 backdrop-blur border border-gray-200/50 dark:border-gray-700/50">
+    <div className="text-center p-3 rounded-xl bg-blue-50/60 dark:bg-blue-50/5 backdrop-blur border border-gray-200/50 dark:border-gray-700/50">
       <div ref={counterRef} className="text-xl sm:text-2xl font-extrabold text-dark">
         {displayValue || `${prefix}0${suffix}`}
       </div>
@@ -228,7 +228,7 @@ function Features() {
           {features.map((f, i) => (
             <div
               key={i}
-              className="reveal card-hover group bg-white dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-sm"
+              className="reveal card-hover group bg-blue-50 dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-sm"
             >
               <div className="w-11 h-11 rounded-xl bg-brand-light dark:bg-brand/15 text-brand flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 {f.icon}
@@ -304,7 +304,7 @@ function Generator() {
 
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           {/* ── LEFT: Inputs ─────────────────────── */}
-          <div className="bg-white dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border shadow-lg shadow-gray-100/50 dark:shadow-black/20 p-6 sm:p-8 flex flex-col gap-5">
+          <div className="bg-blue-50 dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border shadow-lg shadow-gray-100/50 dark:shadow-black/20 p-6 sm:p-8 flex flex-col gap-5">
             <h2 className="text-lg font-bold text-dark flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-brand-light dark:bg-brand/15 text-brand text-sm font-bold">1</span>
               Your Details
@@ -414,7 +414,7 @@ function PlaceholderCard() {
 
 function LoadingState() {
   return (
-    <div className="h-full min-h-[420px] rounded-2xl border border-gray-200/80 dark:border-dark-border bg-white dark:bg-dark-card shadow-lg p-6 sm:p-8 flex flex-col gap-4 animate-fade-in">
+    <div className="h-full min-h-[420px] rounded-2xl border border-gray-200/80 dark:border-dark-border bg-blue-50 dark:bg-dark-card shadow-lg p-6 sm:p-8 flex flex-col gap-4 animate-fade-in">
       <div className="flex items-center gap-3 mb-2">
         <svg className="w-5 h-5 animate-spin-slow text-brand" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-25" />
@@ -440,7 +440,7 @@ function ResultCard({ result, copied, onCopy }) {
     "text-red-600 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-900/20 dark:border-red-800";
 
   return (
-    <div className="h-full rounded-2xl border border-gray-200/80 dark:border-dark-border bg-white dark:bg-dark-card shadow-lg p-6 sm:p-8 flex flex-col animate-scale-in">
+    <div className="h-full rounded-2xl border border-gray-200/80 dark:border-dark-border bg-blue-50 dark:bg-dark-card shadow-lg p-6 sm:p-8 flex flex-col animate-scale-in">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-bold text-dark uppercase tracking-wider">Generated Email</h3>
         <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold border ${scoreColor}`}>
@@ -548,7 +548,7 @@ function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.num}
-              className="reveal card-hover group relative bg-white dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-md"
+              className="reveal card-hover group relative bg-blue-50 dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-md"
             >
               <span className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center shadow-lg">
                 {step.num}
@@ -612,7 +612,7 @@ function Testimonials() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="reveal card-hover bg-white dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-sm"
+              className="reveal card-hover bg-blue-50 dark:bg-dark-card rounded-2xl border border-gray-200/80 dark:border-dark-border p-6 shadow-sm"
             >
               {/* Stars */}
               <div className="flex gap-0.5 mb-4">
@@ -637,140 +637,6 @@ function Testimonials() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════
-   PRICING
-   ═══════════════════════════════════════════════════════ */
-function Pricing() {
-  const [annual, setAnnual] = useState(false);
-  const revealRef = useReveal(60);
-
-  const tiers = [
-    {
-      name: "Free",
-      price: "$0",
-      period: "forever",
-      desc: "Get started with no commitment",
-      features: ["20 emails / day", "All tones", "Subject line included", "Copy to clipboard"],
-      cta: "Get Started Free",
-      popular: false,
-    },
-    {
-      name: "Pro",
-      price: annual ? "$17" : "$29",
-      period: annual ? "/mo (billed yearly)" : "/mo",
-      desc: "For serious outreach",
-      features: [
-        "Unlimited emails",
-        "LinkedIn auto-lookup*",
-        "Email sequences*",
-        "CSV export",
-        "Priority support",
-      ],
-      cta: "Upgrade to Pro",
-      popular: true,
-    },
-    {
-      name: "Team",
-      price: annual ? "$47" : "$79",
-      period: annual ? "/mo (billed yearly)" : "/mo",
-      desc: "Scale your team's outreach",
-      features: [
-        "Everything in Pro",
-        "5 team seats",
-        "API access",
-        "Zapier integration*",
-        "Onboarding call",
-      ],
-      cta: "Contact Sales",
-      popular: false,
-    },
-  ];
-
-  return (
-    <section id="pricing" className="py-20 sm:py-28 px-4">
-      <div ref={revealRef} className="max-w-5xl mx-auto">
-        <div className="text-center mb-10 reveal">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase text-brand bg-brand-light dark:bg-brand/15 mb-3">
-            Pricing
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-dark tracking-tight mb-4">
-            Simple, transparent pricing
-          </h2>
-
-          {/* Toggle */}
-          <div className="inline-flex items-center gap-3 bg-card dark:bg-dark-card rounded-full px-1.5 py-1.5 border border-gray-200 dark:border-dark-border">
-            <button
-              onClick={() => setAnnual(false)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                !annual ? "bg-brand text-white shadow-sm" : "text-muted hover:text-dark"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setAnnual(true)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                annual ? "bg-brand text-white shadow-sm" : "text-muted hover:text-dark"
-              }`}
-            >
-              Annual <span className="text-xs opacity-80">Save 40%</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-3 gap-6">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`reveal card-hover relative bg-white dark:bg-dark-card rounded-2xl border p-6 sm:p-7 flex flex-col
-                ${tier.popular
-                  ? "border-brand/30 pro-glow"
-                  : "border-gray-200/80 dark:border-dark-border shadow-sm"
-                }`}
-            >
-              {tier.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-bold bg-brand text-white shadow-lg">
-                  Most Popular
-                </span>
-              )}
-
-              <h3 className="text-lg font-bold text-dark">{tier.name}</h3>
-              <div className="mt-2 mb-1">
-                <span className="text-4xl font-extrabold text-dark">{tier.price}</span>
-                <span className="text-sm text-muted ml-1">{tier.period}</span>
-              </div>
-              <p className="text-sm text-muted mb-5">{tier.desc}</p>
-
-              <ul className="flex-1 space-y-2.5 mb-6">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-dark">
-                    <svg className="w-4 h-4 mt-0.5 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={`btn-press w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                  tier.popular
-                    ? "bg-brand text-white hover:bg-brand-dark shadow-md hover:shadow-lg"
-                    : "border-2 border-gray-200 dark:border-dark-border text-dark hover:border-brand hover:text-brand"
-                }`}
-              >
-                {tier.cta}
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-center text-xs text-muted mt-6">* Coming soon — included in your plan when available.</p>
       </div>
     </section>
   );
@@ -834,7 +700,7 @@ function Roadmap() {
                 <div className="absolute top-5 left-[calc(50%+16px)] right-[-24px] h-0.5 bg-gradient-to-r from-brand/30 to-gray-200 dark:to-dark-border" />
               )}
 
-              <div className={`card-hover relative bg-white dark:bg-dark-card rounded-2xl border p-5 ${
+              <div className={`card-hover relative bg-blue-50 dark:bg-dark-card rounded-2xl border p-5 ${
                 p.status === "current" ? "border-brand/30 pro-glow" : "border-gray-200/80 dark:border-dark-border"
               }`}>
                 <div className="flex items-center gap-2 mb-3">
@@ -869,7 +735,7 @@ function Roadmap() {
                 {i < phases.length - 1 && <div className="w-0.5 flex-1 bg-gradient-to-b from-brand/30 to-gray-200 dark:to-dark-border" />}
               </div>
 
-              <div className={`flex-1 pb-8 card-hover bg-white dark:bg-dark-card rounded-xl border p-4 mb-3 ${
+              <div className={`flex-1 pb-8 card-hover bg-blue-50 dark:bg-dark-card rounded-xl border p-4 mb-3 ${
                 p.status === "current" ? "border-brand/30" : "border-gray-200/80 dark:border-dark-border"
               }`}>
                 <div className="flex items-center gap-2 mb-2">
@@ -909,7 +775,10 @@ function Waitlist() {
     setStatus("loading");
 
     try {
-      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+      let formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim();
+      if (formspreeId && formspreeId.includes("formspree.io/f/")) {
+        formspreeId = formspreeId.split("formspree.io/f/")[1].trim();
+      }
       if (!formspreeId) {
         await new Promise((r) => setTimeout(r, 800));
         setStatus("success");
@@ -946,7 +815,7 @@ function Waitlist() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            className="flex-1 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card px-4 py-3 text-sm text-dark placeholder:text-muted/60 transition-all duration-200"
+            className="flex-1 rounded-xl border border-gray-200 dark:border-dark-border bg-blue-50 dark:bg-dark-card px-4 py-3 text-sm text-dark placeholder:text-muted/60 transition-all duration-200"
           />
           <button
             id="waitlist-submit"
@@ -986,7 +855,7 @@ export default function Home() {
         <Generator />
         <HowItWorks />
         <Testimonials />
-        <Pricing />
+
         <Roadmap />
         <Waitlist />
       </main>
